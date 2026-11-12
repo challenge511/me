@@ -180,6 +180,25 @@
   .exp-item h4{font-size:12px; letter-spacing:.16em; color:var(--muted); margin:0 0 6px; text-transform:uppercase}
   .exp-item p{margin:0; font-size:14.5px; color:var(--ink-2)}
 
+  /* cases entry — featured panel */
+  .cases-card{
+    background:var(--teal); color:#f4f1e6; border-radius:var(--radius);
+    box-shadow:0 24px 54px rgba(47,93,98,.32); padding:40px 40px 36px;
+  }
+  @media (prefers-color-scheme: dark){ .cases-card{background:#274b4f; box-shadow:0 24px 54px rgba(0,0,0,.4)} }
+  .cases-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:6px}
+  @media (max-width:760px){ .cases-grid{grid-template-columns:1fr} .cases-card{padding:30px 24px 28px} }
+  .case-item{border-top:2px solid var(--gold); padding-top:16px}
+  .case-item .case-num{font-family:"Cormorant Garamond",serif; font-size:30px; font-weight:600; color:var(--gold); line-height:1; display:block; margin-bottom:10px}
+  .case-item h3{font-family:"Noto Serif SC",serif; font-size:20px; margin:0 0 8px; line-height:1.45}
+  .case-item p{margin:0; font-size:14.5px; color:#e3ded0}
+  .case-item .case-metric{margin-top:14px; font-size:13px; font-weight:700; letter-spacing:.04em; color:#f4f1e6}
+  .case-item .case-metric b{font-family:"Cormorant Garamond",serif; font-size:26px; font-weight:600; color:var(--gold); margin-right:6px; vertical-align:-3px}
+  .cases-cta{margin-top:32px}
+  .cases-cta .btn{background:var(--accent); border-color:var(--accent); color:#fff; font-size:15px; padding:15px 32px}
+  .cases-cta .btn:hover{opacity:.9}
+  .nav a.nav-cases{color:var(--accent); font-weight:700}
+
   /* expertise */
   .expertise{display:grid; grid-template-columns:1fr 1fr; gap:18px}
   @media (max-width:680px){ .expertise{grid-template-columns:1fr} }
@@ -298,7 +317,8 @@ var _hmt = _hmt || [];
     <nav class="nav" aria-label="主导航">
       <a href="#about" data-i18n="nav_about">关于</a>
       <a href="#current" data-i18n="nav_current">当前</a>
-      <a href="#experience" data-i18n="nav_exp">履历</a>
+      <a href="#experience" data-i18n="nav_exp">经历</a>
+      <a class="nav-cases" href="cases.html" data-i18n="nav_cases">案例</a>
       <a href="#expertise" data-i18n="nav_skill">专长</a>
       <a href="#questions" data-i18n="nav_q">长期追问</a>
       <a href="#contact" data-i18n="nav_contact">联系</a>
@@ -333,8 +353,9 @@ var _hmt = _hmt || [];
         <span data-i18n="role1">利洁时上海 R&amp;D LIMS Site Lead</span>·<span data-i18n="role2">实验室数字化</span>·<span data-i18n="role3">AI 落地实践者</span>
       </p>
       <div class="hero-cta">
-        <a class="btn btn-light" href="#experience" data-i18n="cta_exp">看我的履历</a>
-        <a class="btn btn-dark" href="#contact" data-i18n="cta_contact">联系交流</a>
+        <a class="btn btn-dark" href="cases.html" data-i18n="cta_cases">看案例经验 →</a>
+        <a class="btn btn-light" href="#experience" data-i18n="cta_exp">看我的经历</a>
+        <a class="btn btn-light" href="#contact" data-i18n="cta_contact">联系交流</a>
       </div>
 
       <div class="stats">
@@ -354,8 +375,8 @@ var _hmt = _hmt || [];
         <p class="eyebrow">About</p>
         <h2 data-i18n="about_title">关于我</h2>
       </div>
-      <p class="lead" data-i18n="about_p1">大家好，我是蔡瀛捷（Stephen Cai），现居上海，澳大利亚籍、中国永久居留。目前在利洁时（Reckitt）上海 SSIC 担任 R&amp;D LIMS 项目 Site Lead，负责全球统一 LabWare LIMS 平台在上海研发中心的落地。</p>
-      <p data-i18n="about_p2">我的职业线从 2002 年微软技术支持起步，在毕博、埃森哲（墨尔本）、惠普、凯捷做了近十年 CRM；2011 年进入赛默飞后转入生命科学 IT 主线，此后在默克做数字化互联实验室、在九天生物（Skyline Therapeutics）任 IT 总监主导基因治疗公司的数字化转型，再到孜棠软件做 AI 业务拓展顾问，直到今天的 LIMS 岗位。<strong>跨过的行业越多，我越确信：技术从来不是最难的部分，让组织愿意改变工作方式才是。</strong></p>
+      <p class="lead" data-i18n="about_p1">大家好，我是蔡瀛捷（Stephen Cai），现居上海。目前在利洁时（Reckitt）上海 SSIC 担任 R&amp;D LIMS 项目 Site Lead，负责全球统一 LabWare LIMS 平台在上海研发中心的落地。</p>
+      <p data-i18n="about_p2">我的职业线从微软技术支持起步，在毕博、埃森哲（墨尔本）、惠普、凯捷做了近十年 CRM；进入赛默飞后转入生命科学 IT 主线，此后在默克做数字化互联实验室、在九天生物（Skyline Therapeutics）任 IT 总监主导基因治疗公司的数字化转型，再到孜棠软件做 AI 业务拓展顾问，直到今天的 LIMS 岗位。<strong>跨过的行业越多，我越确信：技术从来不是最难的部分，让组织愿意改变工作方式才是。</strong></p>
       <p data-i18n="about_p3">这几年我最有成就感的三件事：一是在九天生物主导基于 AlphaFold2 的蛋白质结构预测平台，把药物研发周期缩短了 25%；二是在默克用 IoT 预测性维护，六个月内预防了 4 起实验室事故；三是在一次勒索病毒攻击中，48 小时内恢复全部系统且零数据丢失。这三件事指向同一个判断——<strong>好的数字化，最终要落在安全、合规和真实的业务结果上。</strong></p>
       <p data-i18n="about_p4">如果你也在做实验室信息化、LIMS / ELN 落地，或在思考 AI 如何真正进入研发与质量现场，欢迎来聊聊。</p>
     </div>
@@ -365,13 +386,13 @@ var _hmt = _hmt || [];
   <section id="current">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Now · 2025 — Present</p>
+        <p class="eyebrow">Now · 当前</p>
         <h2 data-i18n="current_title">当前角色</h2>
       </div>
       <div class="current">
         <div class="current-top">
           <span class="co">Reckitt · Shanghai SSIC</span>
-          <span class="when" data-i18n="current_when">2025.05 — 至今 · 上海</span>
+          <span class="when" data-i18n="current_when">上海</span>
         </div>
         <h3 data-i18n="current_h">利洁时上海 R&amp;D LIMS 项目 · Site Lead</h3>
         <p data-i18n="current_p">负责全球 OneLIMS（LabWare）单一平台在上海研发中心的部署：仪器、物料、检测方法与稳定性研究分批上线，协调全球团队、中国 QA 与各实验室，在全球标准与中国业务实际之间找到能落地的节奏——分批上线、用系统反馈迭代 SOP，而不是等一切完美再开始。</p>
@@ -396,7 +417,7 @@ var _hmt = _hmt || [];
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Experience</p>
-        <h2 data-i18n="exp_title">履历</h2>
+        <h2 data-i18n="exp_title">经历</h2>
         <p data-i18n="exp_sub">从 CRM 顾问到生命科学 IT 负责人——每一段都在回答同一个问题：系统怎样才能被业务真正用起来。</p>
       </div>
 
@@ -406,7 +427,7 @@ var _hmt = _hmt || [];
           <div class="exp-head">
             <div class="exp-num">01</div>
             <div>
-              <div class="meta">ZITASOFT · SHANGHAI · 2024.10 — 2025.04</div>
+              <div class="meta">ZITASOFT · SHANGHAI</div>
               <h3 data-i18n="e1_co">孜棠软件</h3>
               <div class="role" data-i18n="e1_role">AI 业务拓展顾问</div>
             </div>
@@ -422,7 +443,7 @@ var _hmt = _hmt || [];
           <div class="exp-head">
             <div class="exp-num">02</div>
             <div>
-              <div class="meta">SKYLINE THERAPEUTICS · SHANGHAI · 2021.01 — 2024.09</div>
+              <div class="meta">SKYLINE THERAPEUTICS · SHANGHAI</div>
               <h3 data-i18n="e2_co">九天生物医药（Skyline Therapeutics）</h3>
               <div class="role" data-i18n="e2_role">IT 总监 · 向 COO 汇报</div>
             </div>
@@ -440,7 +461,7 @@ var _hmt = _hmt || [];
           <div class="exp-head">
             <div class="exp-num">03</div>
             <div>
-              <div class="meta">MERCK · SHANGHAI · 2018.09 — 2020.12</div>
+              <div class="meta">MERCK · SHANGHAI</div>
               <h3 data-i18n="e3_co">默克（Merck）</h3>
               <div class="role" data-i18n="e3_role">中国区负责人 · Digital Connected Lab</div>
             </div>
@@ -449,7 +470,7 @@ var _hmt = _hmt || [];
           <div class="exp-grid">
             <div class="exp-item"><h4 data-i18n="h_rollout">部署规模</h4><p data-i18n="e3_a">在 11 个内部研发实验室 + 1 个外部客户实验室部署数字化实验室方案；以敏捷方式将 10+ 个中国实验室项目接入全球平台。</p></div>
             <div class="exp-item"><h4 data-i18n="h_safety">安全与 AI</h4><p data-i18n="e3_b">IoT 预测性维护六个月内预防 4 起实验室事故；AI 视觉库存管理原型、生物反应器数据经微信实时推送、AI 实验室监控减少人工监督 50%。</p></div>
-            <div class="exp-item"><h4 data-i18n="h_recog">认可</h4><p data-i18n="e3_c">项目获政府支持，2018 年向上海市政府领导演示，并亮相中国国际进口博览会（CIIE）。</p></div>
+            <div class="exp-item"><h4 data-i18n="h_recog">认可</h4><p data-i18n="e3_c">项目获政府支持，曾向上海市政府领导演示，并亮相中国国际进口博览会（CIIE）。</p></div>
             <div class="exp-item"><h4 data-i18n="h_stake">利益相关方</h4><p data-i18n="e3_d">11 位实验室负责人与生命科学事业部商务负责人，向全球 Connected Lab 负责人汇报。</p></div>
           </div>
         </article>
@@ -458,14 +479,14 @@ var _hmt = _hmt || [];
           <div class="exp-head">
             <div class="exp-num">04</div>
             <div>
-              <div class="meta">THERMO FISHER SCIENTIFIC · SHANGHAI · 2011.07 — 2018.09</div>
+              <div class="meta">THERMO FISHER SCIENTIFIC · SHANGHAI</div>
               <h3 data-i18n="e4_co">赛默飞世尔（Thermo Fisher）</h3>
               <div class="role" data-i18n="e4_role">高级 IT 经理 · 业务伙伴（团队 9 人）</div>
             </div>
           </div>
           <p class="thesis" data-i18n="e4_thesis">七年时间，从 CRM 分析师做到大中华区业务伙伴负责人。</p>
           <div class="exp-grid">
-            <div class="exp-item"><h4 data-i18n="h_ecom">电商与奖项</h4><p data-i18n="e4_a">主导电商平台建设（整合 Siebel CRM、SAP、Oracle 与物流系统），上线 3 个月线上销售突破 300 万美元，获 2016 年中国区总裁奖。</p></div>
+            <div class="exp-item"><h4 data-i18n="h_ecom">电商与奖项</h4><p data-i18n="e4_a">主导电商平台建设（整合 Siebel CRM、SAP、Oracle 与物流系统），上线 3 个月线上销售突破 300 万美元，获中国区总裁奖。</p></div>
             <div class="exp-item"><h4 data-i18n="h_proj">项目交付</h4><p data-i18n="e4_b">交付 GTM 全球贸易管理项目，整合 5 个以上业务职能；OneLab 中国区项目按期上线并通过审计；SLA 达标率提升至 98%。</p></div>
             <div class="exp-item"><h4 data-i18n="h_support">支持范围</h4><p data-i18n="e4_c">支持大中华区研发、销售、市场、供应链、制造、财务、法务与质量等 10 个职能部门。</p></div>
             <div class="exp-item"><h4 data-i18n="h_data">数据实践</h4><p data-i18n="e4_d">Power BI 研发数据可视化；引入 RPA 做研发数据采集，减少人工工作量。</p></div>
@@ -476,7 +497,7 @@ var _hmt = _hmt || [];
           <div class="exp-head">
             <div class="exp-num">05</div>
             <div>
-              <div class="meta">CRM YEARS · SHANGHAI / MELBOURNE · 2002 — 2011</div>
+              <div class="meta">CRM YEARS · SHANGHAI / MELBOURNE</div>
               <h3 data-i18n="e5_co">CRM 顾问岁月</h3>
               <div class="role" data-i18n="e5_role">微软（合资）· 毕博 · 埃森哲 · 惠普 · Box Hill Institute · 凯捷</div>
             </div>
@@ -488,6 +509,42 @@ var _hmt = _hmt || [];
           </div>
         </article>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Case Studies</p>
+        <h2 data-i18n="cases_title">案例经验展示</h2>
+        <p data-i18n="cases_sub">三个真实项目，图文并茂——用原图、原数据和用户反馈，讲清楚系统是怎样落地的。</p>
+      </div>
+      <div class="cases-card">
+        <div class="cases-grid">
+          <div class="case-item">
+            <span class="case-num">01</span>
+            <h3 data-i18n="c1_t">互联实验室</h3>
+            <p data-i18n="c1_p">IoT 预测性维护、AI 视觉识别与智能样品柜——把全球互联实验室方案，系统地落进本地实验室。</p>
+            <p class="case-metric"><b>4</b><span data-i18n="c1_m">起事故 · 六个月内被 IoT 预测性维护提前拦下</span></p>
+          </div>
+          <div class="case-item">
+            <span class="case-num">02</span>
+            <h3 data-i18n="c2_t">AlphaFold2 与生物信息学平台</h3>
+            <p data-i18n="c2_p">与研发同事协作开发蛋白质结构预测平台，主要提供技术支持，让算法真正服务于研发流程。</p>
+            <p class="case-metric"><b>25%</b><span data-i18n="c2_m">药物研发周期缩短幅度</span></p>
+          </div>
+          <div class="case-item">
+            <span class="case-num">03</span>
+            <h3 data-i18n="c3_t">低成本智能监控</h3>
+            <p data-i18n="c3_p">用智能插座监控超低温冰箱与仪器利用率——小成本，守住珍贵样本，也让采购有据可依。</p>
+            <p class="case-metric"><b>36.4%</b><span data-i18n="c3_m">QPCR-2 实测利用率 · 采购决策有据可依</span></p>
+          </div>
+        </div>
+        <div class="cases-cta">
+          <a class="btn btn-dark" href="cases.html" data-i18n="cases_btn">查看全部案例 →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -552,16 +609,16 @@ var _hmt = _hmt || [];
         <div class="edu-card">
           <h3 data-i18n="edu_h1">教育背景</h3>
           <ul>
-            <li><b data-i18n="edu1">东华大学</b> · <span data-i18n="edu1b">计算机科学与技术 硕士（2000–2003）</span></li>
-            <li><b data-i18n="edu2">东华大学</b> · <span data-i18n="edu2b">计算机科学与技术 本科（1996–2000）</span></li>
-            <li><b data-i18n="edu3">清华大学五道口金融学院</b> · <span data-i18n="edu3b">金融管理研修（2021）</span></li>
+            <li><b data-i18n="edu1">东华大学</b> · <span data-i18n="edu1b">计算机科学与技术 硕士</span></li>
+            <li><b data-i18n="edu2">东华大学</b> · <span data-i18n="edu2b">计算机科学与技术 本科</span></li>
+            <li><b data-i18n="edu3">清华大学五道口金融学院</b> · <span data-i18n="edu3b">金融管理研修</span></li>
           </ul>
         </div>
         <div class="edu-card">
           <h3 data-i18n="edu_h2">认证与身份</h3>
           <ul>
             <li data-i18n="cert1">持有 PMP®、Siebel CRM 等 <b>6 项国际认证</b></li>
-            <li data-i18n="cert2">澳大利亚籍 · 中国永久居留 · 常驻上海</li>
+            <li data-i18n="cert2">常驻上海</li>
             <li data-i18n="cert3">工作语言：中文 / 英文（曾在墨尔本工作生活）</li>
           </ul>
         </div>
@@ -616,7 +673,7 @@ var _hmt = _hmt || [];
         </div>
         <div class="contact-actions">
           <a href="mailto:cyj114@sina.com" data-i18n="mail_btn">发邮件联系</a>
-          <a class="ghost" href="#experience" data-i18n="back_exp">再看看履历</a>
+          <a class="ghost" href="#experience" data-i18n="back_exp">再看看经历</a>
         </div>
         <p id="copy-tip" style="margin:16px 0 0; font-size:13px; min-height:20px" aria-live="polite"></p>
       </div>
@@ -634,22 +691,22 @@ var _hmt = _hmt || [];
 (function(){
   var I18N = {
     en: {
-      nav_about:"About", nav_current:"Now", nav_exp:"Experience", nav_skill:"Expertise", nav_q:"Questions", nav_contact:"Contact",
+      nav_about:"About", nav_current:"Now", nav_exp:"Experience", nav_cases:"Cases", nav_skill:"Expertise", nav_q:"Questions", nav_contact:"Contact",
       hero_tagline:"For 20+ years I have done one thing: turn complex systems in labs, plants and on the business floor into everyday tools that run compliantly and produce real data.",
       hero_motto:"“Go-live day is not the finish line. The system only counts when the business chooses to use it every day.”",
       role1:"R&D LIMS Site Lead, Reckitt Shanghai", role2:"Lab Digitalization", role3:"AI Implementation Practitioner",
-      cta_exp:"View Experience", cta_contact:"Get in Touch",
+      cta_exp:"View Experience", cta_cases:"View Case Studies", cta_contact:"Get in Touch",
       stat1:"years in enterprise IT & digital transformation",
       stat2:"companies with R&D centre digital-lab deployments — Merck, Skyline Therapeutics, Reckitt (in progress)",
       stat3:"online sales within 3 months of Thermo Fisher e-commerce launch",
       stat4:"full recovery from a ransomware attack · zero data loss",
       about_title:"About Me",
-      about_p1:"Hi, I'm Stephen Cai (蔡瀛捷), based in Shanghai — Australian citizen with Chinese permanent residency. I currently serve as R&D LIMS Site Lead at Reckitt's Shanghai SSIC site, leading the local deployment of the global LabWare LIMS platform.",
-      about_p2:"My career began in 2002 in Microsoft technical support, followed by nearly a decade of CRM work at BearingPoint, Accenture (Melbourne), HP and Capgemini. Joining Thermo Fisher in 2011 moved me onto the life-science IT track: Connected Lab at Merck, IT Director at Skyline Therapeutics leading a gene-therapy company's digital transformation, AI business development consulting at Zitasoft, and now LIMS at Reckitt. The more industries I cross, the more certain I am: technology is never the hard part — getting an organization to change how it works is.",
+      about_p1:"Hi, I'm Stephen Cai (蔡瀛捷), based in Shanghai. I currently serve as R&D LIMS Site Lead at Reckitt's Shanghai SSIC site, leading the local deployment of the global LabWare LIMS platform.",
+      about_p2:"My career began in Microsoft technical support, followed by nearly a decade of CRM work at BearingPoint, Accenture (Melbourne), HP and Capgemini. Joining Thermo Fisher moved me onto the life-science IT track: Connected Lab at Merck, IT Director at Skyline Therapeutics leading a gene-therapy company's digital transformation, AI business development consulting at Zitasoft, and now LIMS at Reckitt. The more industries I cross, the more certain I am: technology is never the hard part — getting an organization to change how it works is.",
       about_p3:"Three achievements mean the most to me: leading the AlphaFold2-based protein structure prediction platform at Skyline, cutting drug-discovery cycles by 25%; preventing 4 lab accidents in six months at Merck through IoT predictive maintenance; and restoring all systems within 48 hours of a ransomware attack with zero data loss. They point to the same conviction — good digitalization must land on safety, compliance and real business outcomes.",
       about_p4:"If you work on lab informatics, LIMS / ELN deployment, or how AI can genuinely enter R&D and quality operations, I'd love to talk.",
       current_title:"Current Role",
-      current_when:"May 2025 — Present · Shanghai",
+      current_when:"Shanghai",
       current_h:"Reckitt Shanghai R&D LIMS Program · Site Lead",
       current_p:"Leading deployment of the global OneLIMS (LabWare) single platform at the Shanghai R&D centre: instruments, materials, test methods and stability studies going live in phases, coordinating global teams, China QA and the labs — finding a pace that respects both global standards and China business reality: go live in batches and let system feedback improve the SOPs, rather than waiting for perfection.",
       chip1:"Global platform, local landing", chip2:"Instruments & materials go-live", chip3:"Stability studies",
@@ -674,12 +731,12 @@ var _hmt = _hmt || [];
       h_rollout:"Rollout Scale", h_safety:"Safety & AI", h_recog:"Recognition", h_stake:"Stakeholders",
       e3_a:"Deployed digital lab solutions across 11 internal R&D labs and 1 external customer lab; integrated 10+ China lab initiatives into the global platform using Agile.",
       e3_b:"IoT predictive maintenance prevented 4 lab accidents in 6 months; AI-vision inventory prototype, bioreactor data pushed in real time via WeChat, AI lab monitoring cut manual oversight by 50%.",
-      e3_c:"Secured government endorsement; demonstrated to Shanghai municipal leaders in 2018 and showcased at the China International Import Expo (CIIE).",
+      e3_c:"Secured government endorsement; demonstrated to Shanghai municipal leaders and showcased at the China International Import Expo (CIIE).",
       e3_d:"Worked with 11 lab managers and the Life Science commercial head; reported to the global Head of Connected Lab.",
       e4_co:"Thermo Fisher Scientific", e4_role:"Sr. IT Manager, Business Partner (team of 9)",
       e4_thesis:"Seven years, from CRM analyst to Greater China business-partner lead.",
       h_ecom:"E-commerce & Award", h_proj:"Project Delivery", h_support:"Support Scope", h_data:"Data Practice",
-      e4_a:"Drove the e-commerce platform (integrating Siebel CRM, SAP, Oracle and logistics): US$3M online sales within 3 months of launch; received the 2016 China President's Award.",
+      e4_a:"Drove the e-commerce platform (integrating Siebel CRM, SAP, Oracle and logistics): US$3M online sales within 3 months of launch; received the China President's Award.",
       e4_b:"Delivered the GTM global trade management project integrating 5+ business functions; OneLab China launched on schedule and passed audit; SLA adherence raised to 98%.",
       e4_c:"Supported 10 Greater China functions: R&D, sales, marketing, supply chain, manufacturing, finance, legal and quality.",
       e4_d:"Power BI for R&D data visualization; introduced RPA for R&D data collection to cut manual work.",
@@ -688,6 +745,18 @@ var _hmt = _hmt || [];
       h_clients:"Clients", h_first:"An Industry First",
       e5_a:"ExxonMobil, Siemens, GE Healthcare, Telstra, Ping An, Industrial Bank, Shanghai GM, and more.",
       e5_b:"At Accenture Melbourne, took part in the world's first Oracle Real-Time Decisions project, embedding RTD into Siebel 7.8 sales.",
+      cases_title:"Case Studies",
+      cases_sub:"Three real projects, told with the original photos, data and user feedback — how the systems actually landed.",
+      c1_t:"The Connected Lab",
+      c1_p:"IoT predictive maintenance, AI-vision recognition and smart sample storage — bringing a global connected-lab program into local laboratories, systematically.",
+      c2_t:"AlphaFold2 & the Bioinformatics Platform",
+      c2_p:"Co-developed a protein structure prediction platform with R&D colleagues, mainly providing technical support, so the algorithms genuinely served the research workflow.",
+      c3_t:"Low-Cost Smart Monitoring",
+      c3_p:"Smart plugs watching over ultra-low freezers and instrument utilization — small cost, precious samples protected, and purchases backed by data.",
+      c1_m:"lab accidents prevented in six months by IoT predictive maintenance",
+      c2_m:"shorter drug-discovery cycles",
+      c3_m:"measured utilization of QPCR-2 — purchases backed by data",
+      cases_btn:"View All Cases →",
       skill_title:"Expertise",
       skill_sub:"Four foundations: lab systems, AI & data, compliant delivery, and cross-functional collaboration.",
       s1_t:"Lab Informatics", s1_p:"LIMS / ELN selection, deployment and adoption; instrument and material data governance; lab automation and IoT integration — from pilot to multi-lab scale.",
@@ -705,11 +774,11 @@ var _hmt = _hmt || [];
       q3:"When AI enters the research lab, is the real bottleneck the model, the data, or scientists' habits?",
       q4:"Under compliance pressure, how does lab digitalization pass audits without locking away efficiency?",
       edu_title:"Education & Credentials", edu_h1:"Education", edu_h2:"Credentials",
-      edu1:"Donghua University", edu1b:"M.S., Computer Science (2000–2003)",
-      edu2:"Donghua University", edu2b:"B.S., Computer Science (1996–2000)",
-      edu3:"Tsinghua PBC School of Finance", edu3b:"Financial Management Program (2021)",
+      edu1:"Donghua University", edu1b:"M.S., Computer Science",
+      edu2:"Donghua University", edu2b:"B.S., Computer Science",
+      edu3:"Tsinghua PBC School of Finance", edu3b:"Financial Management Program",
       cert1:"Holder of 6 international credentials, incl. PMP® and Siebel CRM",
-      cert2:"Australian citizen · Chinese permanent resident · Based in Shanghai",
+      cert2:"Based in Shanghai",
       cert3:"Working languages: Chinese / English (lived and worked in Melbourne)",
       close_title:"How I Work",
       close_quote:"“After twenty years of systems work, I believe this more than ever: understand the business first, align the people, and the system will know what shape to take. Reverse the order, and even the best platform becomes furniture nobody uses.”",
