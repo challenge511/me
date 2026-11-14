@@ -294,6 +294,33 @@
   .mail-btn:hover{background:var(--teal-hover)}
   @media (max-width:560px){ .c-row{flex-wrap:wrap} .c-actions{margin-left:auto} }
   #copy-tip{font-size:13.5px; font-weight:600; color:var(--teal); min-height:22px; margin:14px 0 0}
+
+  /* ---------- side dot navigation ---------- */
+  .dot-nav{
+    position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:60;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+  }
+  .dot-nav a{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    width:26px; height:26px; text-decoration:none;
+  }
+  .dot-nav a .dot{
+    width:9px; height:9px; border-radius:99px; background:#C9C9C1;
+    transition:height .25s ease, background .25s ease;
+  }
+  @media (prefers-color-scheme: dark){ .dot-nav a .dot{background:#4C4C46} }
+  .dot-nav a:hover .dot{background:var(--muted)}
+  .dot-nav a.active .dot{height:26px; background:var(--red)}
+  .dot-nav a:hover.active .dot{background:var(--red)}
+  .dot-nav a .lbl{
+    position:absolute; right:34px; top:50%; white-space:nowrap;
+    transform:translateY(-50%) translateX(5px); opacity:0; pointer-events:none;
+    background:var(--ink); color:var(--bg); border-radius:4px;
+    font-size:12.5px; font-weight:600; letter-spacing:.02em; padding:5px 10px;
+    transition:opacity .18s ease, transform .18s ease;
+  }
+  .dot-nav a:hover .lbl, .dot-nav a:focus-visible .lbl{opacity:1; transform:translateY(-50%) translateX(0)}
+  @media (max-width:1240px){ .dot-nav{display:none} }
   footer{border-top:1px solid var(--line); padding:44px 0 64px; font-size:13.5px; font-weight:500; line-height:1.8; color:var(--muted)}
   footer .f-name{font-weight:800; color:var(--ink); font-size:15px}
   footer a{font-weight:700; color:var(--teal)}
@@ -329,6 +356,16 @@ var _hmt = _hmt || [];
     </div>
   </div>
 </header>
+
+<nav class="dot-nav" aria-label="页面章节导航">
+  <a href="#top" data-dot="top" class="active" aria-label="首页"><span class="lbl" data-i18n="dot_top">首页</span><span class="dot"></span></a>
+  <a href="#about" data-dot="about" aria-label="关于"><span class="lbl" data-i18n="dot_about">关于</span><span class="dot"></span></a>
+  <a href="#cases" data-dot="cases" aria-label="案例"><span class="lbl" data-i18n="dot_cases">案例</span><span class="dot"></span></a>
+  <a href="#experience" data-dot="experience" aria-label="过往经历"><span class="lbl" data-i18n="dot_exp">过往经历</span><span class="dot"></span></a>
+  <a href="#expertise" data-dot="expertise" aria-label="专长与认证"><span class="lbl" data-i18n="dot_skill">专长与认证</span><span class="dot"></span></a>
+  <a href="#questions" data-dot="questions" aria-label="长期追问"><span class="lbl" data-i18n="dot_q">长期追问</span><span class="dot"></span></a>
+  <a href="#contact" data-dot="contact" aria-label="联系"><span class="lbl" data-i18n="dot_contact">联系</span><span class="dot"></span></a>
+</nav>
 
 <main id="top">
 
@@ -667,6 +704,7 @@ var _hmt = _hmt || [];
   /* ---------- i18n ---------- */
   var EN = {
     brand_sub:"Lab Digitalization · LIMS · AI · IT Management",
+    dot_top:"Home", dot_about:"About", dot_cases:"Cases", dot_exp:"Past Experience", dot_skill:"Expertise & Credentials", dot_q:"Questions", dot_contact:"Contact",
     nav_about:"About", nav_cases:"All Cases", nav_exp:"Past Experience", nav_skill:"Expertise & Credentials", nav_contact:"Contact",
     hero_meta:"Based in Shanghai, China<br>Working w/ Reckitt · R&D LIMS",
     hero_side:"Lab Digitalization<br>& LIMS & AI Delivery",
@@ -743,6 +781,33 @@ var _hmt = _hmt || [];
   }
   document.getElementById('btn-zh').addEventListener('click', function(){ setLang('zh'); });
   document.getElementById('btn-en').addEventListener('click', function(){ setLang('en'); });
+
+  /* ---------- side dot navigation: scroll spy ---------- */
+  var dotTargets = [];
+  document.querySelectorAll('.dot-nav a[data-dot]').forEach(function(a){
+    var id = a.getAttribute('data-dot');
+    var el = id === 'top' ? document.querySelector('.hero') : document.getElementById(id);
+    if (el) dotTargets.push({ a: a, el: el });
+  });
+  function setActiveDot(){
+    if (!dotTargets.length) return;
+    var probe = window.scrollY + window.innerHeight * 0.4;
+    var current = dotTargets[0];
+    dotTargets.forEach(function(t){ if (t.el.offsetTop <= probe) current = t; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      current = dotTargets[dotTargets.length - 1];
+    }
+    dotTargets.forEach(function(t){ t.a.classList.toggle('active', t === current); });
+  }
+  var dotTicking = false;
+  window.addEventListener('scroll', function(){
+    if (!dotTicking) {
+      dotTicking = true;
+      requestAnimationFrame(function(){ setActiveDot(); dotTicking = false; });
+    }
+  }, { passive: true });
+  window.addEventListener('resize', setActiveDot);
+  setActiveDot();
 })();
 </script>
 </body>
