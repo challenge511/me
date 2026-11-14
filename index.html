@@ -46,7 +46,8 @@
     }
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth; overflow-x:hidden}
+  img,video,svg{max-width:100%}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important; transition:none!important} }
   body{
     margin:0; background:var(--bg); color:var(--ink);
@@ -58,7 +59,7 @@
   ::selection{background:var(--teal); color:#fff}
   :focus-visible{outline:2px solid var(--teal); outline-offset:2px}
 
-  .wrap{max-width:1100px; margin:0 auto; padding:0 24px}
+  .wrap{width:100%; max-width:1100px; margin:0 auto; padding:0 24px}
   .mono{
     font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
     font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:500;
@@ -112,10 +113,10 @@
   @media (max-width:760px){ .hero{padding:44px 0 56px} }
   .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:start}
   @media (max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:40px} }
-  .hero-name{font-size:clamp(40px,4.6vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1.05; margin:18px 0 0}
+  .hero-name{font-size:clamp(27px,3.1vw,37px); font-weight:800; letter-spacing:-.03em; line-height:1.05; margin:18px 0 0}
   .hero-cn{
     display:block; font-family:"Noto Sans SC",sans-serif; font-weight:900; letter-spacing:.02em;
-    font-size:clamp(44px,5.2vw,62px); line-height:1.15; margin-top:6px;
+    font-size:clamp(29px,3.5vw,41px); line-height:1.15; margin-top:6px;
   }
   .hero-statement{margin:30px 0 0; font-size:clamp(24px,2.8vw,34px); font-weight:800; letter-spacing:-.025em; line-height:1.25}
   .hero-statement span{display:block}
@@ -321,6 +322,44 @@
   }
   .dot-nav a:hover .lbl, .dot-nav a:focus-visible .lbl{opacity:1; transform:translateY(-50%) translateX(0)}
   @media (max-width:1240px){ .dot-nav{display:none} }
+
+  /* ---------- mobile: side margins, no horizontal overflow ---------- */
+  @media (max-width:760px){
+    /* keep a real gutter on both sides (and clear notches in landscape) */
+    .wrap{
+      padding-left:max(20px, env(safe-area-inset-left));
+      padding-right:max(20px, env(safe-area-inset-right));
+    }
+    /* header: brand shrinks and wraps internally, language toggle
+       stays on the brand row instead of being pushed off / wrapping oddly */
+    .site-in{gap:10px 12px; padding-top:14px; padding-bottom:14px}
+    .brand{flex:1 1 auto; gap:10px}
+    .brand .b-name{font-size:15px}
+    .brand .b-sub{font-size:10.5px; letter-spacing:.09em; line-height:1.5; overflow-wrap:break-word}
+    html[lang="en"] .brand .b-sub{font-size:10px; letter-spacing:.05em}
+    .lang-toggle{flex:0 0 auto; margin-left:auto}
+    /* nav takes its own full row and wraps instead of overflowing */
+    nav.main{order:3; flex:1 1 100%; width:100%; max-width:100%; flex-wrap:wrap; gap:4px 18px}
+    nav.main a{padding:8px 0}
+    html[lang="en"] nav.main{gap:4px 16px}
+    /* grid children may not force the page wider than the screen */
+    .hero-grid>*, .about-grid>*, .case-row>*, .tbl-row>*, .exp-row>*{min-width:0}
+    .hero-name{font-size:clamp(23px,6.7vw,29px)}
+    .hero-cn{font-size:clamp(25px,7.7vw,35px)}
+    .hero-roles span{white-space:normal}
+    .btn-row .btn-primary, .btn-row .btn-ghost{max-width:100%}
+    .mirror-note a{overflow-wrap:anywhere}
+    .code-card pre{font-size:12px; padding:18px}
+    .clock-row{gap:12px}
+    .clock-img{width:72px}
+    .wechat-box{padding:20px}
+  }
+  @media (max-width:380px){
+    nav.main{gap:4px 14px}
+    .hero-stats{gap:18px 20px}
+    .lang-toggle button{min-width:38px; padding:5px 8px}
+  }
+
   footer{border-top:1px solid var(--line); padding:44px 0 64px; font-size:13.5px; font-weight:500; line-height:1.8; color:var(--muted)}
   footer .f-name{font-weight:800; color:var(--ink); font-size:15px}
   footer a{font-weight:700; color:var(--teal)}
